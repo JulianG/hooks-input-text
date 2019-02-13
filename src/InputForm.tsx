@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const ENTER: number = 13;
 const ESC: number = 27;
@@ -10,36 +10,29 @@ type Props = {
 };
 
 export const InputForm = (props: Props) => {
+  const { text, onSubmit, onCancel } = props;
 
-  const [currentText, setText] = React.useState(props.text);
+  const [currentText, setText] = React.useState(text);
 
-  const handleKeyUp = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    switch (event.keyCode) {
+  const handleKeyUp = ({ keyCode }: { keyCode: number }) => {
+    switch (keyCode) {
       case ENTER:
-        props.onSubmit(currentText);
+        onSubmit(currentText);
         break;
       case ESC:
-        props.onCancel();
+        onCancel();
         break;
     }
-  };
-
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value);
-  };
-
-  const handleBlur = (_: React.FocusEvent<HTMLInputElement>) => {
-    props.onCancel();
   };
 
   return (
     <input
       autoFocus={true}
       type="text"
-      defaultValue={props.text}
+      defaultValue={text}
       onKeyUp={handleKeyUp}
-      onChange={handleChange}
-      onBlur={handleBlur}
+      onChange={e => setText(e.target.value)}
+      onBlur={() => onCancel()}
     />
   );
 };
