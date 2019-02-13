@@ -6,11 +6,10 @@ import App from "./App";
 it("changes text when hitting enter", async () => {
   const div = document.createElement("div");
 
-  const { getByText, getByValue, debug } = render(<App />);
+  const { getByValue, debug } = render(<App />);
 
   const input = getByValue(/initial text/i);
   
-  fireEvent.focus(input);
   fireEvent.change(input, { target: { value: 'updated text' } });
   fireEvent.keyUp(input, { key: 'Enter', code: 13 });
   
