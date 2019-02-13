@@ -1,9 +1,7 @@
 import React from "react";
-// import ReactDOM from 'react-dom';
-import App from "./App";
-
 import { render, fireEvent, wait } from "react-testing-library";
 import "react-testing-library/cleanup-after-each";
+import App from "./App";
 
 it("changes text when hitting enter", async () => {
   const div = document.createElement("div");
