@@ -20,7 +20,7 @@ export const InputForm = (props: Props) => {
         onSubmit(currentText);
         break;
       case ESC:
-        onCancel();
+        // onCancel();
         break;
     }
   };
@@ -32,7 +32,7 @@ export const InputForm = (props: Props) => {
       defaultValue={text}
       onKeyUp={handleKeyUp}
       onChange={e => setText(e.target.value)}
-      onBlur={() => onCancel()}
+      // onBlur={() => onCancel()}
     />
   );
 };

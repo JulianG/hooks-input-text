@@ -1,18 +1,19 @@
 import React from "react";
 import { render, fireEvent, wait } from "react-testing-library";
-import "react-testing-library/cleanup-after-each";
-import App from "./App";
 
-it("changes text when hitting enter", async () => {
+it("must be a problem between the chair and the keyboard", async () => {
   const div = document.createElement("div");
 
-  const { getByValue, debug } = render(<App />);
+  const { getByValue, debug } = render(<input type="text" value="initial text" />);
 
-  const input = getByValue(/initial text/i);
+  const input = getByValue(/initial text/i); // ok
   
-  fireEvent.change(input, { target: { value: 'updated text' } });
-  fireEvent.keyUp(input, { key: 'Enter', code: 13 });
+  fireEvent.change(input, { target: { value: 'updated text' } }); // ok
   
-  await wait(()=> getByValue(/updated text/i));
+  // text input still contains the initial value
+  await wait(()=> getByValue(/updated text/i)); // ❌
  
 });
+
+
+
